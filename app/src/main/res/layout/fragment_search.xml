@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment.SearchFragment">
+    <androidx.appcompat.widget.Toolbar
+        app:titleTextColor="@color/white"
+        app:title="검색"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:background="@color/main"
+        />
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo_2"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:padding="5dp"
+        android:hint="      검색어를 입력하세요"
+        android:background="#D3D3D3"
+        android:layout_marginStart="40dp"
+        android:id="@+id/editText"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <android.widget.Button
+        android:id="@+id/btn_search"
+        android:background="@drawable/boarder"
+        android:text="검색"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="@+id/editText" />
+"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/sub"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" >
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text="많이 검색한 키워드"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:background="@color/main"
+            android:id="@+id/keyword_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="장애인"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:background="@color/main"
+            android:id="@+id/keyword_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공직선거법"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/keyword_1" />
+
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:background="@color/main"
+            android:id="@+id/keyword_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="형사소송법"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/keyword_2"
+            app:layout_constraintTop_toTopOf="@+id/keyword_2" />
+
+
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:background="@color/main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="국회법"
+            android:id="@+id/keyword_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/keyword_1"
+            app:layout_constraintStart_toStartOf="@+id/keyword_1"
+            app:layout_constraintTop_toBottomOf="@+id/keyword_1" />
+
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:background="@color/main"
+            android:id="@+id/keyword_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="농수산물"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/keyword_4" />
+
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:background="@color/main"
+            android:id="@+id/keyword_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="코로나"
+            app:layout_constraintBottom_toBottomOf="@+id/keyword_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/keyword_5"
+            app:layout_constraintTop_toTopOf="@+id/keyword_5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
