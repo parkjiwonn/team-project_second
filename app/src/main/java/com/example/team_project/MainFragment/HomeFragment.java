@@ -1,6 +1,8 @@
 package com.example.team_project.MainFragment;
 
 import static com.example.team_project.Retrofit.RetrofitClient.KEY;
+import static com.example.team_project.Retrofit.RetrofitNaverSearch.client_id;
+import static com.example.team_project.Retrofit.RetrofitNaverSearch.client_pw;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +23,9 @@ import com.example.team_project.Event.LinePagerIndicatorDecoration;
 import com.example.team_project.Event.SnapPagerScrollListener;
 import com.example.team_project.LatestRowListActivity;
 import com.example.team_project.R;
+import com.example.team_project.Retrofit.ApiInterface;
 import com.example.team_project.Retrofit.RetrofitClient;
+import com.example.team_project.Retrofit.RetrofitNaverSearch;
 import com.example.team_project.RowDetailActivity;
 import com.example.team_project.databinding.FragmentHomeBinding;
 
@@ -39,6 +43,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private final String TAG=this.getClass().getSimpleName();
     private FragmentHomeBinding binding;
     private RecyclerView recyclerView_latest;
+    private RecyclerView recyclerView_fav;
     private LatestAdapter latestAdapter;
     private ArrayList<RowData> rowList=new ArrayList<>();
     public HomeFragment() {
@@ -54,6 +59,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerView_latest=binding.rvLatest;
         getData();
         binding.btnDetail.setOnClickListener(this);
+
+        binding.step1.setOnClickListener(view -> {
+            searchNaverNews("발의");
+        });
+        binding.step2.setOnClickListener(view -> {
+            searchNaverNews("입법예고");
+        });
+        binding.step3.setOnClickListener(view -> {
+            searchNaverNews("법사위심사");
+        });
+        binding.step4.setOnClickListener(view -> {
+            searchNaverNews("본회의심의");
+        });
+        binding.step5.setOnClickListener(view -> {
+            searchNaverNews("법률안 이송");
+        });
+
         return binding.getRoot();
     }
     JSONArray row;
@@ -70,41 +92,58 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             JSONArray head=new JSONArray(jsonObject.getString("nzmimeepazxkubdpn")).getJSONObject(0).getJSONArray("head");
                             row=new JSONArray(jsonObject.getString("nzmimeepazxkubdpn")).getJSONObject(1).getJSONArray("row");
                             Log.d(TAG, "row: "+row);
-                            for(int i=0;i<3;i++){
-                                if (!"null".equals(row.getJSONObject(i).getString("COMMITTEE"))){
-                                    rowList.add(new RowData(
-                                                    row.getJSONObject(i).getString("BILL_NO"),
-                                                    row.getJSONObject(i).getString("BILL_NAME"),
-                                                    row.getJSONObject(i).getString("PROPOSER"),
-                                                    row.getJSONObject(i).getString("PROPOSE_DT"),
-                                                    row.getJSONObject(i).getString("COMMITTEE_ID"),
-                                                    row.getJSONObject(i).getString("COMMITTEE"),
-                                                    row.getJSONObject(i).getString("DETAIL_LINK")
-                                            ));
-                                }else {
-                                    rowList.add(new RowData(
-                                            row.getJSONObject(i).getString("BILL_NO"),
-                                            row.getJSONObject(i).getString("BILL_NAME"),
-                                            row.getJSONObject(i).getString("PROPOSER"),
-                                            row.getJSONObject(i).getString("PROPOSE_DT"),
-                                            "-",
-                                            "-",
-                                            row.getJSONObject(i).getString("DETAIL_LINK")
-                                    ));
-                                }
 
-                            }
+                            // index = 0
+                            rowList.add(new RowData("2118059", "양식산업발전법 일부개정법률안", "김승남의원 등 10인", "2022-11-02",
+                                    null,null, "http://likms.assembly.go.kr/bill/billDetail.do?billId=PRC_Q2U2A0V6X1V3Q0D9K2W6W2N3R7J1V0&ageFrom=21&ageTo=21", 0));
+                            // index = 1
+                            rowList.add(new RowData("2118058", "의료법 일부개정법률안", "인재근의원 등 11인", "2022-11-02",
+                                    null,null, "http:\\/\\/likms.assembly.go.kr\\/bill\\/billDetail.do?billId=PRC_N2O2P1E1L0G2I1G7N1C5E0C8A4U0S3&ageFrom=21&ageTo=21", 0));
+                            // index = 2
+                            rowList.add(new RowData("2118057", "조세특례제한법 일부개정법률안", "이용의원등15인", "2022-11-02",
+                                    null,null, "http:\\/\\/likms.assembly.go.kr\\/bill\\/billDetail.do?billId=PRC_E2X2B1P0M2E8J1B4G0Y5N3G2W0A6H6&ageFrom=21&ageTo=21", 0));
+//                            for(int i=0;i<3;i++){
+//
+//                                // 일일히 데이터 추가하기
+//                                // row list 를 만들어야 한다.
+//
+//
+//                                if (!"null".equals(row.getJSONObject(i).getString("COMMITTEE"))){
+//                                    rowList.add(new RowData(
+//                                                    row.getJSONObject(i).getString("BILL_NO"),
+//                                                    row.getJSONObject(i).getString("BILL_NAME"),
+//                                                    row.getJSONObject(i).getString("PROPOSER"),
+//                                                    row.getJSONObject(i).getString("PROPOSE_DT"),
+//                                                    row.getJSONObject(i).getString("COMMITTEE_ID"),
+//                                                    row.getJSONObject(i).getString("COMMITTEE"),
+//                                                    row.getJSONObject(i).getString("DETAIL_LINK")
+//                                            ));
+//                                }else {
+//                                    rowList.add(new RowData(
+//                                            row.getJSONObject(i).getString("BILL_NO"),
+//                                            row.getJSONObject(i).getString("BILL_NAME"),
+//                                            row.getJSONObject(i).getString("PROPOSER"),
+//                                            row.getJSONObject(i).getString("PROPOSE_DT"),
+//                                            "-",
+//                                            "-",
+//                                            row.getJSONObject(i).getString("DETAIL_LINK")
+//                                    ));
+//                                }
+//
+//                            }
 
                             latestAdapter=new LatestAdapter(rowList);
                             recyclerView_latest.setLayoutManager(new LinearLayoutManager(
                                     getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
+                            // 최신 법률안 아이템 클릭시 법률안 상세보기로 이동
                             latestAdapter.setOnItemClickListener((v, pos) -> {
                                 startActivity(new Intent(getActivity(),RowDetailActivity.class).putExtra("row",rowList.get(pos)));
+                                Log.d(TAG, "상세보기 이동 onResponse: row = " + rowList.get(pos) );
                             });
 
                             recyclerView_latest.setAdapter(latestAdapter);
-                            setRecyclerViewEvent();
+                            setRecyclerViewEvent(recyclerView_latest);
 
 
 
@@ -120,11 +159,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 });
     }
 
-    private void setRecyclerViewEvent() {
+    private void setRecyclerViewEvent(RecyclerView recyclerView) {
         Log.d(TAG, "setRecyclerViewEvent: ");
         PagerSnapHelper snapHelper = new PagerSnapHelper();
-        recyclerView_latest.addItemDecoration(new LinePagerIndicatorDecoration());
-        snapHelper.attachToRecyclerView(recyclerView_latest);
+        recyclerView.addItemDecoration(new LinePagerIndicatorDecoration());
+        snapHelper.attachToRecyclerView(recyclerView);
         SnapPagerScrollListener listener = new SnapPagerScrollListener(
                 new PagerSnapHelper(),
                 SnapPagerScrollListener.ON_SCROLL,
@@ -137,7 +176,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
                 }
         );
-        recyclerView_latest.addOnScrollListener(listener);
+        recyclerView.addOnScrollListener(listener);
+    }
+
+    // 입법 과정 선택했을 때 뉴스 보여주는 메서드
+    private void searchNaverNews(String keyword) {
+        Log.d(TAG, "searchNaverNews: "+keyword);
+        RetrofitNaverSearch.getInstance().create(ApiInterface.class).getSearchResult(
+                client_id,client_pw,"news.json",keyword)
+                .enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (response.isSuccessful() && response.body() != null){
+                            String result = response.body();
+                            Log.d(TAG, "성공 : " + result);
+                        }else{
+                            Log.e(TAG, "실패 : " + response.body());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.d(TAG, "onFailure: "+t.getMessage());
+                    }
+                });
     }
 
     @Override

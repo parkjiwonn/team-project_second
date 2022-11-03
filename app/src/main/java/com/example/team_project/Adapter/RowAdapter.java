@@ -33,8 +33,8 @@ public class RowAdapter extends RecyclerView.Adapter<RowAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(21<mList.get(position).getBill_name().length()){
-            holder.bill_name.setText(mList.get(position).getBill_name().substring(0,21)+"...");
+        if(19<mList.get(position).getBill_name().length()){
+            holder.bill_name.setText(mList.get(position).getBill_name().substring(0,19)+"...");
         }else {
             holder.bill_name.setText(mList.get(position).getBill_name());
         }

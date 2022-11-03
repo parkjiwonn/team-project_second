@@ -32,21 +32,21 @@ public class MyPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding= FragmentMyPageBinding.inflate(inflater,container,false);
 
-        binding.step1.setOnClickListener(view -> {
-            searchNaverNews("발의");
-        });
-        binding.step2.setOnClickListener(view -> {
-            searchNaverNews("입법예고");
-        });
-        binding.step3.setOnClickListener(view -> {
-            searchNaverNews("법사위심사");
-        });
-        binding.step4.setOnClickListener(view -> {
-            searchNaverNews("본회의심의");
-        });
-        binding.step5.setOnClickListener(view -> {
-            searchNaverNews("법률안 이송");
-        });
+//        binding.step1.setOnClickListener(view -> {
+//            searchNaverNews("발의");
+//        });
+//        binding.step2.setOnClickListener(view -> {
+//            searchNaverNews("입법예고");
+//        });
+//        binding.step3.setOnClickListener(view -> {
+//            searchNaverNews("법사위심사");
+//        });
+//        binding.step4.setOnClickListener(view -> {
+//            searchNaverNews("본회의심의");
+//        });
+//        binding.step5.setOnClickListener(view -> {
+//            searchNaverNews("법률안 이송");
+//        });
         return binding.getRoot();
     }
 

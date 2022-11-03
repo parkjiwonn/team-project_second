@@ -50,6 +50,7 @@ public class LatestAdapter extends RecyclerView.Adapter<LatestAdapter.ViewHolder
             row_name=binding.lowName;
             //member=binding.member;
             member=itemView.findViewById(R.id.member);
+            // 최신 법률안 아이템 클릭
             itemView.setOnClickListener(view -> {
                 int pos=getAdapterPosition();
                 if(pos!=RecyclerView.NO_POSITION){
